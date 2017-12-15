@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
-import { findProjectFeatures } from '../../../../services/project.feature.services';
+import { createProjectFeature,  findProjectFeatures } from '../../../../services/project.feature.services';
 
 
 class Features extends Component {
@@ -11,6 +11,7 @@ class Features extends Component {
         this.state = {
             features: []
         };
+        this.handleAddFeature = this.handleAddFeature.bind(this);
     }
 
     componentWillMount() {
@@ -35,6 +36,24 @@ class Features extends Component {
             })
             .catch(err => {throw err});
     }
+
+    handleAddFeature() {
+        const projectid = this.props.match.params.projectid;
+        const reqBody = { featureData: '' };
+        createProjectFeature(projectid, reqBody)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
+                else {
+                    const newState = this.state.features;
+                    newState.push(res.data[0]);
+                    this.setState({ features: newState })
+                }
+            })
+            .catch(err => {throw err });
+    }
+
 
     render() {
         const { userid, projectid } = this.props.match.params;
@@ -68,7 +87,7 @@ class Features extends Component {
                                             { displayFeatures }
                                         </div>
                                         <div className="features-footer">
-                                        <button className="add-button"> <span/> Add Feature </button>
+                                        <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
                                     </div>
                                 </div>
                             </div>
