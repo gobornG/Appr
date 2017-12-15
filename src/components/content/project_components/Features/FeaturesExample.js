@@ -8,7 +8,32 @@ import { findProjectFeatures } from '../../../../services/project.feature.servic
 class Features extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            features: []
+        };
+    }
+
+    componentWillMount() {
+        const featureExamples = [
+            {feature_data: "e.g. Saving the galaxy"},
+            {feature_data: "e.g. Light my saber"},
+        ];
+        const projectid = this.props.match.params.projectid;
+        findProjectFeatures(projectid)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res); //or console.log
+                }
+                else {
+                    if (res.data.length === 0) {
+                        this.setState({ features: featureExamples });
+                    }
+                    else {
+                        this.setState({ features: res.data });
+                    }
+                }
+            })
+            .catch(err => {throw err});
     }
 
     render() {
