@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
-import { createProjectFeature,  findProjectFeatures } from '../../../../services/project.feature.services';
+import { createProjectFeature,  findProjectFeatures, updateProjectFeature } from '../../../../services/project.feature.services';
 
 
 class Features extends Component {
@@ -48,10 +48,16 @@ class Features extends Component {
                 else {
                     const newState = this.state.features;
                     newState.push(res.data[0]);
-                    this.setState({ features: newState })
+                    this.setState({ features: newState });
                 }
             })
             .catch(err => {throw err });
+    }
+
+    handleChangeFeature(e, index) {
+        const newState = this.state.features;
+        newState = [index].feature_data = e.target.value;
+        this.setState({ features: newState});
     }
 
 
@@ -64,7 +70,7 @@ class Features extends Component {
                 <div className="features-item">
                     <section>
                         <label>({index + 1} + '.')</label>
-                        <input value={feature.feature_data}/>
+                        <input id={feature.id} value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
                     </section>
                     <button className="not-enough-info-btn">Save</button>
                     <button className="delete-x">&times;</button> 
