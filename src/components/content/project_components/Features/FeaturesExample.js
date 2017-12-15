@@ -37,6 +37,21 @@ class Features extends Component {
     }
 
     render() {
+        const { userid, projectid } = this.props.match.params;
+        const features = this.state.features;
+        const displayFeatures = features.map( feature => {
+            const index = features.indexOf(feature);
+            return (
+                <div className="features-item">
+                    <section>
+                        <label>({index + 1} + '.')</label>
+                        <input value={feature.feature_data}/>
+                    </section>
+                    <button className="not-enough-info-btn">Save</button>
+                    <button className="delete-x">&times;</button> 
+                </div>
+            )
+        });
         return (
             <div>
                 <Header />
@@ -50,7 +65,7 @@ class Features extends Component {
                                 <div className="features-area drop-shadow">
                                     <div className="features-wrapper">
                                         <div className="features-list">
-
+                                            { displayFeatures }
                                         </div>
                                         <div className="features-footer">
                                         <button className="add-button"> <span/> Add Feature </button>
