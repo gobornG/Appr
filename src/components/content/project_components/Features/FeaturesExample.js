@@ -12,6 +12,8 @@ class Features extends Component {
             features: []
         };
         this.handleAddFeature = this.handleAddFeature.bind(this);
+        this.handleChangeFeature = this.handleChangeFeature.bind(this);
+        this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
     }
 
     componentWillMount() {
@@ -60,6 +62,19 @@ class Features extends Component {
         this.setState({ features: newState});
     }
 
+    handleSubmitFeature(e, index) {
+        const projectid = this.props.match.params.projectid;
+        const featureid = e.target.id;
+        const reqBody = this.state.features[index].feature_data;
+        updateProjectFeature(projectid, featureid, reqBody)
+        .then( res => {
+            if (res.status !== 200) {
+                alert(res);
+            }
+        })
+        .catch(err => {throw err});
+    }
+
 
     render() {
         const { userid, projectid } = this.props.match.params;
@@ -70,9 +85,9 @@ class Features extends Component {
                 <div className="features-item">
                     <section>
                         <label>({index + 1} + '.')</label>
-                        <input id={feature.id} value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
+                        <input value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
                     </section>
-                    <button className="not-enough-info-btn">Save</button>
+                    <button className="not-enough-info-btn" id={feature.id} onClick={(e) => this.handleSubmitFeature(e, index)}>Save</button>
                     <button className="delete-x">&times;</button> 
                 </div>
             )
