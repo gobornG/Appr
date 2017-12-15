@@ -6,6 +6,11 @@ import { findProjectFeatures } from '../../../../services/project.feature.servic
 
 
 class Features extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
     render() {
         return (
             <div>
