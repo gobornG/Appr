@@ -27,7 +27,6 @@ class FeatureItem extends Component {
     }
 
     toggleSaveBtn(e){
-        debugger;
         if (e.target.value !== this.state.feature.feature_data) {
             const newState = this.state.UI;
             newState.saveBtn = true;
