@@ -1,4 +1,4 @@
-import React, { Compnonent } from 'react';
+import React, { Component } from 'react';
 
 class Viewfield extends Component {
     constructor(props) {
