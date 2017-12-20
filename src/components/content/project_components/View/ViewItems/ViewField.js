@@ -8,7 +8,7 @@ class Viewfield extends Component {
     }
 
     render() {
-        const { index, viewid, viewName, imgURL, handleChangeView, submitChangeView } = this.props;
+        const { index, viewid, viewName, imgURL, handleChangeView, submitChangeView, handleDeleteViewButton } = this.props;
         return (
             <div className="view-item">
             <section>
@@ -17,7 +17,7 @@ class Viewfield extends Component {
               <input className="view-input-imgurl" type="text" id={viewid} value={imgURL} onChange={e => handleChangeView(e, index, "image_url")} />
             </section>
               <button  id={viewid} onClick={e => submitChangeView(e, index)}>Save</button>
-              <button className="delete-x" id={viewid} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</button> 
+              <button className="delete-x" id={viewid} onClick={e => handleDeleteViewButton(e, index)}>&times;</button> 
           </div>
         );
     }
