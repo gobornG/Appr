@@ -110,7 +110,7 @@ class View extends Component {
     const views = this.state.views;
     const displayViews = views.map( view => {
         const index = views.indexOf(view);
-        return <ViewField key={`idea-${index}`} index={index} viewid={view.id} viewName={view.name} imgURL={view.image_url}/>
+        return <ViewField key={`idea-${index}`} index={index} viewid={view.id} viewName={view.name} imgURL={view.image_url} handleChangeView={this.handleChangeView}/>
     });
 
     return (
