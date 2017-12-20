@@ -110,9 +110,7 @@ class View extends Component {
     const views = this.state.views;
     const displayViews = views.map( view => {
         const index = views.indexOf(view);
-        return (
-          
-        )
+        return <ViewField />
     });
 
     return (
