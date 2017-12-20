@@ -4,6 +4,7 @@ import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import { getUId } from '../../../../utils/uid.utils';
 import { createProjectView, findProjectViews, findProjectView, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
 import './view.scss';
+import ViewField from './ViewItems/ViewField';
 
 class View extends Component {
     constructor(props) {
