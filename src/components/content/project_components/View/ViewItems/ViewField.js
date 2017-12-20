@@ -1,5 +1,12 @@
 import React, { Compnonent } from 'react';
 
-class Viewfield extends Component {}
+class Viewfield extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        
+    }
+
+}
 
 export default Viewfield;
