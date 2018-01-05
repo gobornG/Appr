@@ -48,7 +48,7 @@
 
     .project-item-header{
         height: 25px;
-        width: 104%;
+        width: 103%;
     }
 
     .name-table-row{
@@ -120,7 +120,10 @@
 .column-checkbox {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 8px;
+    font-size: 8px;
+    text-align: right;
+    
 }
 
 .remove-item {
